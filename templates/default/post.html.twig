@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div align="centre"><h1>{{ post.title }}</h1> {{ post.date|date('Y-m-d, h-i-s') }} <div><p>{{ post.description }}</p></div></div>
+
+
+    <a href="http://127.0.0.1:8000/">Главная</a>
+
+{% endblock %}
