@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<h1>Статьи</h1>
+
+{% for post in posts  %}
+
+    <p>{{ post.date|date('Y-m-d, h-i-s') }} - <a href="{{ path('post', {'id': post.id}) }}">{{ post.title }}</a> {{ post.description | truncate(100)}} </p>
+
+
+
+
+    {% endfor %}
+
+{% endblock %}
