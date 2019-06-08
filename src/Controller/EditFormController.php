@@ -20,8 +20,10 @@ class EditFormController extends AbstractController
         $form = $this->createForm(EditFormType::class, $posts);
         $form->handleRequest($request);
 
-        $entityManager->persist($posts);
-        $entityManager->flush();
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->persist($posts);
+            $entityManager->flush();
+        }
 
         return $this->render('edit_form/index.html.twig', [
             'form' => $form->createView(),
@@ -36,8 +38,11 @@ class EditFormController extends AbstractController
         $form = $this->createForm(EditFormType::class, $post);
         $form->handleRequest($request);
 
+        if ($form->isSubmitted() && $form->isValid()){
         $entityManager->persist($post);
         $entityManager->flush();
+        }
+
 
         return $this->render('edit_form/editpost.html.twig', [
             'form' => $form->createView(),
