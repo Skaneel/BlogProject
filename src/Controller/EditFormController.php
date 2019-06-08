@@ -27,4 +27,20 @@ class EditFormController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
+    /**
+     * @Route("/edit/form/{id}", name="edit_form_post")
+     */
+    public function edit(Post $post, Request $request, EntityManagerInterface $entityManager)
+    {
+        $form = $this->createForm(EditFormType::class, $post);
+        $form->handleRequest($request);
+
+        $entityManager->persist($post);
+        $entityManager->flush();
+
+        return $this->render('edit_form/editpost.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
 }
